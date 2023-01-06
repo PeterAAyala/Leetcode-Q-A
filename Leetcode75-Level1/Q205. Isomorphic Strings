@@ -1,0 +1,25 @@
+"""
+Q205. Isomorphic String
+
+Given two strings s and t, determine if they are isomorphic.
+
+Two strings s and t are isomorphic if the characters in s can be replaced to get t.
+
+All occurrences of a character must be replaced with another character while preserving the order of characters. No two characters may map to the same character, but a character may map to itself.
+"""
+
+class Solution:
+    def isIsomorphic(self, s: str, t: str) -> bool:
+        newMapping = {}
+        mappedLetters = set()
+        for (idx, char) in enumerate(s):
+            if char not in newMapping:
+                if t[idx] not in mappedLetters:
+                    newMapping[char] = t[idx]
+                    mappedLetters.add(t[idx])
+                else:
+                    return False
+            if (char in newMapping) and (newMapping[char] != t[idx]):
+                return False
+        return True
+            
